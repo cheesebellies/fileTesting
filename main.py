@@ -18,4 +18,4 @@ driver = webdriver.Chrome(options=chrome_options)
 url = (requests.post("https://seltest2.david0weir.repl.co/search",{'tosearch':'moana'}).text)
 
 
-driver.get(url)
+# driver.get(url)
