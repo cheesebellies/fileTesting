@@ -13,8 +13,10 @@ for i in l:
   requests.get(f"https://{i}.david0weir.repl.co/")
 
 url = (requests.post("https://seltest2.david0weir.repl.co/search",{'tosearch':'moana'}).text)
-cookies = requests.get("https://lastman.david0weir.repl.co/cookies")
+cookies = requests.get("https://lastman.david0weir.repl.co/cookies").text
+print(cookies)
 cookies = ast.literal_eval(cookies)
+print(cookies)
 
 print(url)
 
