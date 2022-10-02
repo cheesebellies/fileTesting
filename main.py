@@ -43,6 +43,13 @@ result = driver.find_element(By.TAG_NAME, "video").get_attribute("src")
 print(result)
 
 driver.get(result)
+sa = 0
+while True:
+  sa+= 1
+  time.sleep(300)
+  driver.get("https://google.com")
+  if sa == 7:
+    break
 
 input("wait for download")
 

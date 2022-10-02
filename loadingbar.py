@@ -5,11 +5,10 @@ a = os.listdir("/home/runner/Downloads/")[0]
 
 print(f'ffprobe -show_data -hide_banner /home/runner/Downloads/{a}')
 
-resultout = subprocess.run(f'./findfile.sh {a}',stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-print(resultout.stderr)
+output = subprocess.Popen(f'ffprobe -show_data -hide_banner /home/runner/Downloads/{a}', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 # subprocessout = subprocess.Popen(f"ffprobe -show_data -hide_banner /home/runner/Downloads/{a}", shell=True, stdout=subprocess.PIPE)
 # resultout = subprocessout.stdout.read().decode().strip()
-s = str(resultout.stdout)
+s = str(output.communicate()[2])
 
 print("\n\n\n\n\n\n\n" + s + "\n\n")
 
