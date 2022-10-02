@@ -3,14 +3,11 @@ import os
 
 a = os.listdir("/home/runner/Downloads/")[0]
 
-print(f'ffprobe -show_data -hide_banner /home/runner/Downloads/{a}')
+cmd = f'ffprobe -show_data -hide_banner /home/runner/Downloads/{a}'
 
-output = subprocess.Popen(f'ffprobe -show_data -hide_banner /home/runner/Downloads/{a}', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-# subprocessout = subprocess.Popen(f"ffprobe -show_data -hide_banner /home/runner/Downloads/{a}", shell=True, stdout=subprocess.PIPE)
-# resultout = subprocessout.stdout.read().decode().strip()
-s = str(output.communicate()[2])
+output = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 
-print("\n\n\n\n\n\n\n" + s + "\n\n")
+s = str(output.stderr.decode())
 
 vmbps = (int(s.split("Video: ")[-1].split("kb/s")[0].split(", ")[-1][:-1]))/1000
 ambps = (int(s.split("Audio: ")[-1].split("kb/s")[0].split(", ")[-1][:-1]))/1000
