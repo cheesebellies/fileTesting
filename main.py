@@ -6,8 +6,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import json
 import time
+import os
 import ast
-  
+import flask
+from flask import Flask, send_from_directory
+
 l = ["seltest2","middleman","lastman"]
 for i in l:
   requests.get(f"https://{i}.david0weir.repl.co/")
@@ -24,7 +27,7 @@ print(url)
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
-# chrome_options.add_experimental_option("detach", True)
+chrome_options.add_experimental_option("detach", True)
 
 driver = webdriver.Chrome(options=chrome_options)
 
@@ -40,3 +43,20 @@ result = driver.find_element(By.TAG_NAME, "video").get_attribute("src")
 print(result)
 
 driver.get(result)
+
+input("wait for download")
+
+driver.close()
+
+app = Flask(__name__, static_url_path='')
+
+@app.route('/')
+def index():
+  return "Hello world!"
+
+@app.route('/vod')
+def vidios(path):
+  return send_from_directory('~/Downloads/',os.listdir('~/Downloads/')[0])
+
+if __name__ == "__main__":
+  app.run(host='0.0.0.0', port=8080)
