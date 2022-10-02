@@ -13,10 +13,11 @@ for i in l:
   requests.get(f"https://{i}.david0weir.repl.co/")
 
 url = (requests.post("https://seltest2.david0weir.repl.co/search",{'tosearch':'moana'}).text)
-cookies = requests.get("https://lastman.david0weir.repl.co/cookies").text
-print(cookies)
-cookies = ast.literal_eval(cookies)
-print(cookies)
+
+# cookies = requests.get("https://lastman.david0weir.repl.co/cookies").text
+# print(cookies)
+# cookies = ast.literal_eval(cookies)
+# print(cookies)
 
 print(url)
 
@@ -27,9 +28,14 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 
 driver = webdriver.Chrome(options=chrome_options)
 
-driver.get("https://www.google.com/")
+# driver.get("https://www.google.com/")
 
-for i in cookies:
-  driver.add_cookie(i)
+# for i in cookies:
+#   driver.add_cookie(i)
+
 
 driver.get(url)
+
+result = driver.find_element(By.TAG_NAME, "video").get_attribute("src")
+
+driver.get(result)
