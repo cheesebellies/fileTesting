@@ -37,5 +37,6 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get(url)
 
 result = driver.find_element(By.TAG_NAME, "video").get_attribute("src")
+print(result)
 
 driver.get(result)
