@@ -8,14 +8,15 @@ class Bar:
   def __init__(self):
     pass
 
-  def get_prog(prevprog,cmd2):
+  def get_prog(self,prevprog,cmd2):
     output = subprocess.run(cmd2, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     
     prog = (str(output.stdout.decode())).split("runner ")[-1].split(" ")[0]
     if prog == prevprog:
       return "Done"
     else:
-      return int((int(prog))/1000)
+      print(int(prog))
+      return int((int(prog))/100)
 
   def Start(self):
     a = os.listdir("/home/runner/Downloads/")[0]
@@ -34,6 +35,9 @@ class Bar:
     size = int(1000*((tmbps/8)*ts))
     
     cmd2 = f'ls -l /home/runner/Downloads/{a}'
+
+
+    print(size)
     
     with tqdm(total=size) as pbar:
       previprog = 0

@@ -50,29 +50,12 @@ driver.get(result)
 sa = 0
 time.sleep(10)
 bar = Bar()
-p = Process(target=bar.start)
+p = Process(target=bar.Start)
 p.daemon = True
 p.start()
 while True:
   sa+= 1
   time.sleep(300)
   driver.get("https://google.com")
-  if sa == 7:
+  if sa == 8:
     break
-
-input("wait for download")
-
-driver.close()
-
-app = Flask(__name__, static_url_path='')
-
-@app.route('/')
-def index():
-  return "Hello world!"
-
-@app.route('/vod')
-def vidios():
-  return send_from_directory('/home/runner/Downloads/',os.listdir('/home/runner/Downloads/')[0])
-
-if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=8080)
