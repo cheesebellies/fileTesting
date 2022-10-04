@@ -30,7 +30,10 @@ class Downloader:
     db["progress"] = 2
     l = ["seltest2","middleman","lastman"]
     for i in l:
-      requests.get(f"https://{i}.david0weir.repl.co/")
+      try:
+        requests.get(f"https://{i}.david0weir.repl.co/")
+      finally:
+        pass
 
   def geturl(self,info):
     db["progress"] = 3
@@ -81,6 +84,7 @@ class Downloader:
       time.sleep(5)
       if db["isdone"] == True:
         print("GO TO https://FILETEST.david0weir.repl.co/vod to download video!!")
+        os.system("./commitfile.sh")
         break
 
 
