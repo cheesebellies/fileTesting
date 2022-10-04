@@ -1,1 +1,0 @@
-try to use things to download .crdownload file here - when mem is low (once file size is too large) commit to github, then delete most of the file (possibly iterating through boxes to avoid corruption) and continue the download. Once the download is finished, commit to different github branch to retrieve later.

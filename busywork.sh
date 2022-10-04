@@ -1,1 +1,0 @@
-echo \'allo mate
